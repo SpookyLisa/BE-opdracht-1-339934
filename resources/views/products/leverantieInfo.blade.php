@@ -6,17 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Levering Informatie</title>
 </head>
-    <body>
-        <div class="container d-flex justify-content-center">
-            <div class="col-md-10">
-                <h1>{{ $title }}</h1>
+<body>
+    <div class="container d-flex justify-content-center">
+        <div class="col-md-10">
+            <h1>{{ $title }}</h1>
+                @if($noStock)
+                    <div class="alert alert-warning mt-4" role="alert">
+                        Er is van dit product op dit moment geen voorraad aanwezig, de verwachte eerstvolgende levering is: 
+                        {{ $nextDelivery ? date('d-m-Y', strtotime($nextDelivery)) : 'Onbekend' }}
+                    </div>
+                    <meta http-equiv="refresh" content="4;url={{ route('product.index') }}">
+                @else
                     @if($leverancier)
                         <div class="card mt-4 mb-4">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="card-body">
+                                    <div class="col-md-6">
                                         <p><strong>Naam leverancier:</strong> {{ $leverancier->Naam }}</p>
                                         <p><strong>Contactpersoon leverancier:</strong> {{ $leverancier->Contactpersoon }}</p>
+                                    </div>
+                                    <div class="col-md-6">
                                         <p><strong>Leveranciernummer:</strong> {{ $leverancier->Leveranciernummer }}</p>
                                         <p><strong>Mobiel:</strong> {{ $leverancier->Mobiel }}</p>
                                     </div>
@@ -50,11 +59,8 @@
                             @endforelse
                         </tbody>
                     </table>
-
-
-
-                    <a href="{{ route('product.index') }}" class="btn btn-secondary mt-3">Terug naar overzicht</a>
-            </div>
+                <a href="{{ route('product.index') }}" class="btn btn-secondary mt-3">Terug naar overzicht</a>
+            @endif
         </div>
-    </body>
-</html>
+    </div>
+</body>
