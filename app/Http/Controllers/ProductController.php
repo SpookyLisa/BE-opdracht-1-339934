@@ -47,4 +47,25 @@ class ProductController extends Controller
             'noStock' => false
         ]);
     }
+
+
+    public function allergenenInfo($id)
+    {
+        $allergenen = $this->productModel->sp_GetProductAllergenen($id);
+        if (empty($allergenen)) {
+            return view('products.allergeenInfo', [
+                'title' => 'Overzicht Allergenen',
+                'allergenen' => [],
+                'product' => null,
+                'noAllergens' => true
+            ]);
+        }
+
+        return view('products.allergeeninfo', [
+            'title' => 'Overzicht Allergenen',
+            'allergenen' => $allergenen,
+            'product' => $allergenen[0],
+            'noAllergens' => false
+        ]);
+    }
 }
