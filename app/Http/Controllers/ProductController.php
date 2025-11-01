@@ -30,7 +30,7 @@ class ProductController extends Controller
         $leverancier = $this->productModel->SP_GetLeverantieInfo($id);
 
         if (!empty($leveringen) && $leveringen[0]->AantalAanwezig == 0) {
-            return view('products.leverantie-info', [
+            return view('products.leverantieinfo', [
                 'title' => 'Levering Informatie',
                 'leveringen' => [],
                 'leverancier' => !empty($leverancier) ? $leverancier[0] : null,
@@ -40,7 +40,7 @@ class ProductController extends Controller
         }
 
 
-        return view('products.leverantie-info', [
+        return view('products.leverantieinfo', [
             'title' => 'Levering Informatie',
             'leveringen' => $leveringen,
             'leverancier' => !empty($leverancier) ? $leverancier[0] : null,

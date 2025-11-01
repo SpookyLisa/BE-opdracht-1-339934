@@ -14,11 +14,9 @@
                         <div class="card mt-4 mb-4">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="card-body">
                                         <p><strong>Naam leverancier:</strong> {{ $leverancier->Naam }}</p>
                                         <p><strong>Contactpersoon leverancier:</strong> {{ $leverancier->Contactpersoon }}</p>
-                                    </div>
-                                    <div class="col-md-6">
                                         <p><strong>Leveranciernummer:</strong> {{ $leverancier->Leveranciernummer }}</p>
                                         <p><strong>Mobiel:</strong> {{ $leverancier->Mobiel }}</p>
                                     </div>
