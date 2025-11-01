@@ -23,4 +23,18 @@ class ProductController extends Controller
             'products' => $products
         ]);
     }
+
+    public function leverantieInfo($id)
+    {
+        $leveringen = $this->productModel->SP_GetLeverancierInfo($id);
+        $leverancier = $this->productModel->SP_GetLeverantieInfo($id);
+
+        return view('products.leverantie-info', [
+            'title' => 'Levering Informatie',
+            'leveringen' => $leveringen,
+            'leverancier' => !empty($leverancier) ? $leverancier[0] : null,
+            'noStock' => false
+        ]);
+    }
+
 }
