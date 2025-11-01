@@ -19,7 +19,6 @@ BEGIN
     
     ON PROD.Id = MAGA.ProductId;
 
-
 END$$
 
 DELIMITER ;
