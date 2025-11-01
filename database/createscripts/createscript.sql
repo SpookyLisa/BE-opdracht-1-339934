@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS Allergeen;
 DROP TABLE IF EXISTS Leverancier;
 DROP TABLE IF EXISTS Product;
 
+---------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Allergeen
 (
@@ -19,8 +20,6 @@ CREATE TABLE IF NOT EXISTS Allergeen
    ,CONSTRAINT      PK_Allergeen_Id   PRIMARY KEY CLUSTERED(Id)
 ) ENGINE=InnoDB;
 
-
-
 INSERT INTO Allergeen
 (
      Naam
@@ -33,9 +32,12 @@ VALUES
     ,('Lactose', 'Dit product bevat lactose')
     ,('Soja', 'Dit product bevat soja');
 
+---------------------------------------------------------------------------------------------------------------------------------
 
 DROP TABLE IF EXISTS Magazijn;
 DROP TABLE IF EXISTS Product;
+
+---------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Product
 (
@@ -48,8 +50,6 @@ CREATE TABLE IF NOT EXISTS Product
     ,DatumGewijzigd  Datetime(6)                           NOT NULL      DEFAULT CURRENT_TIMESTAMP(6)
     ,CONSTRAINT      PK_Product_Id        PRIMARY KEY CLUSTERED (Id)
 ) ENGINE=InnoDB   AUTO_INCREMENT=1;
-
-
 
 INSERT INTO Product
 (
@@ -71,6 +71,8 @@ VALUES
     ,('Kruis Drop', '8719587322265')
     ,('Zoute Ruitjes', '8719587323256');
 
+---------------------------------------------------------------------------------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS Magazijn
 (
      Id                   MEDIUMINT       UNSIGNED          NOT NULL      AUTO_INCREMENT
@@ -84,8 +86,6 @@ CREATE TABLE IF NOT EXISTS Magazijn
     ,CONSTRAINT           PK_Magazijn_Id                    PRIMARY KEY CLUSTERED (Id)
     ,CONSTRAINT           FK_Magazijn_ProductId_Product_Id  FOREIGN KEY (ProductId) REFERENCES Product(Id)
 ) ENGINE=InnoDB   AUTO_INCREMENT=1;
-
-
 
 INSERT INTO Magazijn
 (
@@ -108,9 +108,12 @@ VALUES
     ,(12, 1, 467)
     ,(13, 5, 20);
 
+---------------------------------------------------------------------------------------------------------------------------------
 
 DROP TABLE IF EXISTS ProductPerLeverancier;
 DROP TABLE IF EXISTS Leverancier;
+
+---------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS Leverancier
 (
@@ -125,8 +128,6 @@ CREATE TABLE IF NOT EXISTS Leverancier
     ,DatumGewijzigd  Datetime(6)                             NOT NULL      DEFAULT CURRENT_TIMESTAMP(6)
     ,CONSTRAINT      PK_Levrancier_Id        PRIMARY KEY CLUSTERED (Id)
 ) ENGINE=InnoDB   AUTO_INCREMENT=1;
-
-
 
 INSERT INTO Leverancier
 (
@@ -143,8 +144,7 @@ VALUES
     ,('De Bron', 'Remco Veenstra', 'L1023857736', '06-34291234')
     ,('Quality Street', 'Johan Nooij', 'L1029234586', '06-23458456');
 
-
-
+---------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS ProductPerLeverancier
 (
@@ -165,9 +165,6 @@ CREATE TABLE IF NOT EXISTS ProductPerLeverancier
          FOREIGN KEY (ProductId) REFERENCES Product(Id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
-
-
-
 INSERT INTO ProductPerLeverancier
 (
      LeverancierId
@@ -176,6 +173,7 @@ INSERT INTO ProductPerLeverancier
     ,Aantal
     ,DatumEerstVolgendeLevering
 )
+
 VALUES
  (1, 1, '2024-10-09', 23, '2024-10-16')
 ,(1, 1, '2024-10-18', 21, '2024-10-25')
@@ -195,7 +193,7 @@ VALUES
 ,(5, 12, '2024-10-11', 45, NULL)
 ,(5, 13, '2024-10-12', 23, NULL);
 
-
+---------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS ProductPerAllergeen
 (
@@ -211,7 +209,7 @@ CREATE TABLE IF NOT EXISTS ProductPerAllergeen
     ,CONSTRAINT           FK_ProductPerAllergeen_AllergeenId_Allergeen_Id  FOREIGN KEY (AllergeenId) REFERENCES Allergeen (Id)
 ) ENGINE=InnoDB   AUTO_INCREMENT=1;
 
-
+---------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO ProductPerAllergeen
 (
