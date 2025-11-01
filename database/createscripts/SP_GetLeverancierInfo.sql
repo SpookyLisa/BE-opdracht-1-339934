@@ -25,6 +25,8 @@ BEGIN
 
     WHERE PROD.Id = p_productId;
 
+
+
 END$$
 
 DELIMITER ;
