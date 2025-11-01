@@ -29,6 +29,17 @@ class ProductController extends Controller
         $leveringen = $this->productModel->SP_GetLeverancierInfo($id);
         $leverancier = $this->productModel->SP_GetLeverantieInfo($id);
 
+        if (!empty($leveringen) && $leveringen[0]->AantalAanwezig == 0) {
+            return view('products.leverantie-info', [
+                'title' => 'Levering Informatie',
+                'leveringen' => [],
+                'leverancier' => !empty($leverancier) ? $leverancier[0] : null,
+                'noStock' => true,
+                'nextDelivery' => !empty($leveringen) ? $leveringen[0]->DatumEerstVolgendeLevering : null
+            ]);
+        }
+
+
         return view('products.leverantie-info', [
             'title' => 'Levering Informatie',
             'leveringen' => $leveringen,
@@ -36,5 +47,4 @@ class ProductController extends Controller
             'noStock' => false
         ]);
     }
-
 }
