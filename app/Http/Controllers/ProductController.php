@@ -16,7 +16,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = $this->productModel->sp_GetProducts();
+        $products = $this->productModel->sp_GetAllProducts();
 
         return view('products.index', [
             'title' => 'Overzicht Magazijn Jamin',
