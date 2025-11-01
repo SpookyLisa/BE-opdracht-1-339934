@@ -15,6 +15,7 @@ BEGIN
           ,PPLE.DatumEerstVolgendeLevering
           ,MAGA.AantalAanwezig
 
+
     FROM Product AS PROD
 
     INNER JOIN ProductPerLeverancier AS PPLE
