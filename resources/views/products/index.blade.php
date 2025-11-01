@@ -28,7 +28,6 @@
                     <th>Naam</th>
                     <th class="text-center">Verpakkingseenheid (kg)</th>
                     <th class="text-center">Aantal Aanwezig</th>
-                    <th class="text-center">Allergenen Info</th>
                     <th class="text-center">Leverantie Info</th>
                 </thead>
                 <tbody>
@@ -39,22 +38,15 @@
                             <td class="text-center">{{ $product->VerpakkingsEenheid }}</td>
                             <td class="text-center">{{ $product->AantalAanwezig }}</td>
                             <td class="text-center">
-                                <form action="{{ route('product.allergenenInfo', $product->Id) }}" method="POST">
-                                    @csrf
-                                    @method('GET')
-                                    <button type="submit" class="btn btn-danger btn-sm">Allergenen Info</button>
-                                </form>
-                            </td>
-                            <td class="text-center">
                                 <form action="{{ route('product.leverantieInfo', $product->Id) }}" method="POST">
                                     @csrf
                                     @method('GET')
-                                    <button type="submit" class="btn btn-success btn-sm">Leverantie Info</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">?</button>
                                 </form>
                             </td>
                         </tr>
                     @empty
-                        <tr colspan='3'>Geen allergenen bekent</tr>
+                        <tr colspan='3'>Geen allergenen bekend</tr>
                     @endforelse
                 </tbody>
             </table>
