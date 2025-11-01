@@ -39,7 +39,6 @@ class ProductController extends Controller
             ]);
         }
 
-
         return view('products.leverantieinfo', [
             'title' => 'Levering Informatie',
             'leveringen' => $leveringen,
@@ -47,7 +46,6 @@ class ProductController extends Controller
             'noStock' => false
         ]);
     }
-
 
     public function allergenenInfo($id)
     {
