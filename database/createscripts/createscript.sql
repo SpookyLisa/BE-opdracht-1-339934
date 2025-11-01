@@ -1,10 +1,5 @@
 Use `laravel`;
-DROP TABLE IF EXISTS ProductPerAllergeen;
-DROP TABLE IF EXISTS ProductPerLeverancier;
-DROP TABLE IF EXISTS Magazijn;
-DROP TABLE IF EXISTS Allergeen;
-DROP TABLE IF EXISTS Leverancier;
-DROP TABLE IF EXISTS Product;
+DROP TABLE IF EXISTS ProductPerAllergeen, ProductPerLeverancier, Magazijn, Allergeen, Leverancier, Product;
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -25,17 +20,13 @@ INSERT INTO Allergeen
      Naam
     ,Omschrijving
 )
+
 VALUES
      ('Gluten', 'Dit product bevat gluten')
     ,('Gelatine', 'Dit product bevat gelatine')
     ,('AZO-kleurstof', 'Dit product bevat AZO-kleurstof')
     ,('Lactose', 'Dit product bevat lactose')
     ,('Soja', 'Dit product bevat soja');
-
----------------------------------------------------------------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS Magazijn;
-DROP TABLE IF EXISTS Product;
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -56,6 +47,7 @@ INSERT INTO Product
      Naam
     ,Barcode
 )
+
 VALUES
      ('Mintnopjes', '8719587231278')
     ,('Schoolkrijt', '8719587326713')
@@ -93,6 +85,7 @@ INSERT INTO Magazijn
     ,VerpakkingsEenheid
     ,AantalAanwezig
 )
+
 VALUES
      (1, 5, 453)
     ,(2, 2.5, 400)
@@ -107,11 +100,6 @@ VALUES
     ,(11, 2, 367)
     ,(12, 1, 467)
     ,(13, 5, 20);
-
----------------------------------------------------------------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS ProductPerLeverancier;
-DROP TABLE IF EXISTS Leverancier;
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -136,6 +124,7 @@ INSERT INTO Leverancier
     ,Leveranciernummer
     ,Mobiel
 )
+
 VALUES
      ('Venco', 'Bert van Linge', 'L1029384719', '06-28493827')
     ,('Astra Sweets', 'Jasper del Monte', 'L1029284315', '06-39398734')
@@ -160,9 +149,9 @@ CREATE TABLE IF NOT EXISTS ProductPerLeverancier
      DatumGewijzigd                 Datetime(6)                       NOT NULL      DEFAULT CURRENT_TIMESTAMP(6),
      CONSTRAINT PK_ProductPerLeverancier_Id PRIMARY KEY CLUSTERED (Id),
      CONSTRAINT FK_ProductPerLeverancier_LeverancierId_Leverancier_Id
-         FOREIGN KEY (LeverancierId) REFERENCES Leverancier(Id),
+        FOREIGN KEY (LeverancierId) REFERENCES Leverancier(Id),
      CONSTRAINT FK_ProductPerLeverancier_ProductId_Product_Id
-         FOREIGN KEY (ProductId) REFERENCES Product(Id)
+        FOREIGN KEY (ProductId) REFERENCES Product(Id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 INSERT INTO ProductPerLeverancier
@@ -216,6 +205,7 @@ INSERT INTO ProductPerAllergeen
      ProductId
     ,AllergeenId
 )
+
 VALUES
   (1, 2)
  ,(1, 1)
