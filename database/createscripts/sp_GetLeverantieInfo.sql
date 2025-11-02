@@ -1,30 +1,26 @@
-use Laravel;
+use laravel;
 
-DROP PROCEDURE IF EXISTS sp_GetLeverancierInfo;
+DROP PROCEDURE IF EXISTS sp_GetLeverantieInfo;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_GetLeverancierInfo(
-    IN p_productId INT
+CREATE PROCEDURE sp_GetLeverantieInfo (
+    IN p_Id INT
 )
 BEGIN
 
-    SELECT PROD.Naam
-          ,PPLE.DatumLevering
-          ,PPLE.Aantal
-          ,PPLE.DatumEerstVolgendeLevering
-          ,MAGA.AantalAanwezig
+    SELECT DISTINCT LEVE.Id
+				   ,LEVE.Naam
+				   ,LEVE.Contactpersoon
+				   ,LEVE.Leveranciernummer
+				   ,LEVE.Mobiel
 
-
-    FROM Product AS PROD
-
-    INNER JOIN ProductPerLeverancier AS PPLE
-    ON PPLE.ProductId = PROD.Id
-
-    INNER JOIN Magazijn AS MAGA
-    ON MAGA.ProductId = PROD.Id
-
-    WHERE PROD.Id = p_productId;
+    FROM   			Leverancier AS LEVE
+    
+    INNER JOIN 		ProductPerLeverancier AS PPLE
+    ON 				LEVE.Id = PPLE.LeverancierId
+    
+    WHERE		    PPLE.ProductId = p_Id;
 
 END$$
 
